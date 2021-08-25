@@ -15,15 +15,19 @@ public class Calculator {
 	private int sum(String[] num)
 	{
 		int sum=0;
-		for(int i=0;i<num.length;i++)
+		for(String currNum:num)
 		{
-			sum += stringToInt(num[i]);
+			sum += stringToInt(currNum);
 		}
 		return sum;
 	}
 	private int stringToInt(String num)
 	{
-		return Integer.parseInt(num);
+		int n = Integer.parseInt(num);
+		if(n<0)
+			throw new IllegalArgumentException("Negative Input!");
+		else
+			return n;
 	}
 
 }

@@ -1,11 +1,16 @@
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class MyJuint {
 	
 	private Calculator calculator;
+	
+	@Rule
+	public ExpectedException thrown= ExpectedException.none();
 	
 	@Before
 	public void initialize()
@@ -35,5 +40,14 @@ public class MyJuint {
 	public void unknownAmountOfNumbersShouldBeSummed()
 	{
 		assertEquals(calculator.add("1\n2,3"), 6);
+	}
+	
+	@Test
+	public void negativeInputException()
+	{
+		thrown.expect(IllegalArgumentException.class);
+		thrown.expectMessage("Negative Input!");
+		calculator.add("-1");
+		calculator.add("-5\n-15");
 	}
 }
