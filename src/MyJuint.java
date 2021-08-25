@@ -30,4 +30,10 @@ public class MyJuint {
 	{
 		assertEquals(calculator.add("1\n2"), 3);	
 	}
+	
+	@Test
+	public void unknownAmountOfNumbersShouldBeSummed()
+	{
+		assertEquals(calculator.add("1\n2,3"), 6);
+	}
 }

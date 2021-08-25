@@ -14,7 +14,12 @@ public class Calculator {
 	}
 	private int sum(String[] num)
 	{
-		return stringToInt(num[0])+stringToInt(num[1]);
+		int sum=0;
+		for(int i=0;i<num.length;i++)
+		{
+			sum += stringToInt(num[i]);
+		}
+		return sum;
 	}
 	private int stringToInt(String num)
 	{
