@@ -24,4 +24,10 @@ public class MyJuint {
 	{
 		assertEquals(calculator.add("5,4"), 9);
 	}
+	
+	@Test
+	public void newLineDelimetedShouldBeSummed()
+	{
+		assertEquals(calculator.add("1\n2"), 3);	
+	}
 }
