@@ -17,6 +17,8 @@ public class Calculator {
 		int sum=0;
 		for(String currNum:num)
 		{
+			if(stringToInt(currNum)>1000)
+				continue;
 			sum += stringToInt(currNum);
 		}
 		return sum;

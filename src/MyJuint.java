@@ -50,4 +50,11 @@ public class MyJuint {
 		calculator.add("-1");
 		calculator.add("-5\n-15");
 	}
+	
+	@Test
+	public void numberGreaterThan1000Ignored()
+	{
+		assertEquals(calculator.add("1002\n2"), 2);
+	}
+	
 }
