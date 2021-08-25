@@ -7,6 +7,6 @@ public class MyJuint {
 	public void emptyStringReturnsZero()
 	{
 		Calculator calculator=new Calculator();
-		assertEquals(calculator.calculate(""), 0);
+		assertEquals(calculator.add("1"), 1);
 	}
 }
