@@ -57,4 +57,9 @@ public class MyJuint {
 		assertEquals(calculator.add("1002\n2"), 2);
 	}
 	
+	@Test
+	public void delimiterOfAnyLength()
+	{
+		assertEquals(calculator.add("//[***]\\n1***2***3"), 6);
+	}
 }
