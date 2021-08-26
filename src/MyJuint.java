@@ -62,4 +62,10 @@ public class MyJuint {
 	{
 		assertEquals(calculator.add("//[***]\\n1***2***3"), 6);
 	}
+	
+	@Test
+	public void multipleDelimiter()
+	{
+		assertEquals(calculator.add("//[*][%]\\n1**2%3"), 6);
+	}
 }

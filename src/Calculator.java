@@ -1,11 +1,14 @@
+import java.util.ArrayList;
 
 public class Calculator {
 	
 	public int add(String input) {
 		if(input.charAt(0)=='/')
 		{
-			String delimiter=input.substring(input.indexOf('/')+3,input.indexOf('n')-2);
-			input = removeDelimiter(input,delimiter);
+			ArrayList<String> delimiterList=new ArrayList<String>();
+			String delimiter=input.substring(input.indexOf('/')+2,input.indexOf('n')-1);
+			findDelimiter(delimiterList,delimiter);
+			input = removeDelimiter(input,delimiterList);
 			String number[]=input.split(" ");
 			return sum(number);
 		}
@@ -44,34 +47,64 @@ public class Calculator {
 			return n;
 	}
 	
-	private String removeDelimiter(String input,String delimiter)
+	private String removeDelimiter(String input,ArrayList<String> delimiterList)
 	{
 		int index=(input.indexOf('n'))+1;
 		String s="";
 		for(int i=index;i<input.length();i++)
 		{
-			if(!checkDelimiter(input,delimiter,i))
+			int length=checkDelimiter(input,delimiterList,i);
+			if(length<=0)
 			{
 				s=s+Character.toString(input.charAt(i))+" ";
 			}
 			else
 			{
-				i=i+(delimiter.length()-1);
+				i=i+(length-1);
 			}
 		}
 		return s;
 	}
 	
-	private boolean checkDelimiter(String input,String delimiter,int index)
+	private int checkDelimiter(String input,ArrayList<String> delimiterList,int index)
 	{
+		int tempIndex=index;
+		for(String delimiter:delimiterList)
+		{
+			int count=0;
+			for(int i=0;i<delimiter.length();i++)
+			{
+				if(delimiter.charAt(i)!=input.charAt(index))
+				{
+					break;
+				}
+				else
+					count++;
+				index++;
+			}
+			if(count==delimiter.length())
+				return count;
+			index=tempIndex;
+		}
+		return -1;
+	}
+	
+	private void findDelimiter(ArrayList<String> delimiterList,String delimiter)
+	{
+		String x="";
 		for(int i=0;i<delimiter.length();i++)
 		{
-			if(delimiter.charAt(i)!=input.charAt(index))
+			if(delimiter.charAt(i)=='[')
 			{
-				return false;
+				i++;
+				while(delimiter.charAt(i)!=']')
+				{
+					x=x+Character.toString(delimiter.charAt(i));
+					i++;
+				}
+				delimiterList.add(x);
+				x="";
 			}
-			index++;
 		}
-		return true;
 	}
 }
